@@ -5,7 +5,7 @@
 
 ---
 
-![Preview](netflix-preview.png?raw=true)
+![Preview](netflix-preview.jpeg?raw=true)
 
 ---
 
