@@ -18,6 +18,9 @@ function App() {
         <Route path="/series">
           <Home type="series" />
         </Route>
+        <Route path="/watch">
+          <Watch />
+        </Route>
       </Switch>
     </Router>
 
