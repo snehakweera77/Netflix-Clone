@@ -3,7 +3,8 @@ import "./Home.css";
 import Navbar from "../../components/navbar/Navbar";
 import Featured from "../../components/featured/Featured";
 import List from "../../components/list/List";
-import axios from "@testing-library/jest-dom";
+import axios from "axios";
+
 function Home({ type }) {
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
@@ -22,6 +23,7 @@ function Home({ type }) {
             },
           }
         );
+        console.log(res);
         setLists(res.data);
       } catch (err) {
         console.log(err);

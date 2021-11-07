@@ -23,7 +23,7 @@
 .listItem:hover > img {
   height: 140px;
 }
-iframe {
+video {
   width: 100%;
   height: 140px;
   object-fit: cover;
