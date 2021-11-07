@@ -3,13 +3,28 @@ import "./App.css";
 import Home from "./pages/home/Home";
 import Watch from "./pages/watch/Watch";
 import Register from "./pages/register/Register";
-
+import Login from "./pages/login/Login";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
-    <div className="app">
-      <Register />
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/movies">
+          <Home type="movies" />
+        </Route>
+        <Route path="/series">
+          <Home type="series" />
+        </Route>
+        <Route path="/watch">
+          <Watch />
+        </Route>
+      </Switch>
+    </Router>
 
-      {/*<Row
+    /*<Row
         title="NETFLIX ORIGINAL"
         fetchURL={Request.fetchNetflixOriginals}
         isLargeRow
@@ -21,8 +36,7 @@ function App() {
       <Row title="Horror Movies" fetchURL={Request.fetchHorrorMovies} />
       <Row title="Romance Movies" fetchURL={Request.fetchRomanceMovies} />
       <Row title="Documentaries" fetchURL={Request.fetchDocumentaries} />
-      */}
-    </div>
+      */
   );
 }
 
