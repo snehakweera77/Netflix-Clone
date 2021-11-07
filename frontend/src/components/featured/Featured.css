@@ -1,7 +1,6 @@
 .featured {
-  color: white;
-  object-fit: contain;
-  height: 448px;
+  height: 76vh;
+  position: relative;
 }
 .category {
   position: absolute;
@@ -24,25 +23,27 @@
 #genre {
   z-index: 2;
 }
-.featured__info {
-  margin-left: 30px;
-  padding-top: 140px;
-  height: 190px;
+.featured__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-.featured__title {
-  font-size: 3rem;
-  font-weight: 800;
-  padding-bottom: 0.3rem;
+.featured__info {
+  width: 35%;
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.featured__info__title {
+  width: 40vw;
+  margin-top: 100px;
 }
 
 .featured__description {
-  width: 45rem;
-  line-height: 1.3;
-  padding-top: 1rem;
-  font-size: 0.8rem;
-  max-width: 360px;
-  height: 80px;
+  margin: 20px 0px;
 }
 
 .featured__button {

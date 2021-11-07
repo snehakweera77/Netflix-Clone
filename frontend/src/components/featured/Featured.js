@@ -1,44 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "./Featured.css";
 import axios from "../../axios";
-import Request from "../../Request";
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 
-function Featured({ type }) {
-  const [movie, setMovie] = useState([]);
-  const url = "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}";
+function Featured({ type, setGenre }) {
+  const [content, setContent] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(Request.fetchNetflixOriginals);
-      setMovie(
-        request.data.results[
-          Math.floor(Math.random() * (request.data.results.length - 1))
-        ]
-      );
-      return request;
-    }
-    fetchData();
-  }, []);
-
-  function truncate(str, n) {
-    return str?.length > n ? str.substring(0, n - 1) + "..." : str;
-  }
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`, {
+          headers: {
+            token:
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        });
+        setContent(res.data[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRandomContent();
+  }, [type]);
   return (
-    <header
-      className="featured"
-      style={{
-        backgroundSize: "cover",
-        backgroundImage: `url(
-                    "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
-                )`,
-        backgroundPosition: "center center",
-      }}
-    >
+    <div className="featured">
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="category__genre">
+          <select
+            name="genre"
+            id="category__genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -57,10 +50,10 @@ function Featured({ type }) {
         </div>
       )}
 
-      <img className="featured__img" src={`${url}`} alt="" />
+      <img className="featured__img" src={content.img} alt="" />
       <div className="featured__info">
-        <h1>{movie?.title || movie?.name || movie?.original_title}</h1>
-        <h2 className="featured__description">{truncate(movie?.overview)}</h2>
+        <img className="featured__info__title" src={content.imgTitle} alt="" />{" "}
+        <h2 className="featured__description">{content.desc}</h2>
         <div className="featured__button">
           <button className="featured__button__play">
             <PlayArrow />
@@ -74,7 +67,7 @@ function Featured({ type }) {
       </div>
 
       <div className="featured--fadeBottom" />
-    </header>
+    </div>
   );
 }
 
