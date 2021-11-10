@@ -1,5 +1,5 @@
-import React from "react";
-import "./App.css";
+import React, { useContext } from "react";
+import "./App.scss";
 import Home from "./pages/home/Home";
 import Watch from "./pages/watch/Watch";
 import Register from "./pages/register/Register";
@@ -10,13 +10,15 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { AuthContext } from "./authContext/AuthContext";
+
 function App() {
-  const user = false;
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
+          {user ? <Home type="series" /> : <Redirect to="/register" />}
         </Route>
         <Route path="/register">
           {!user ? <Register /> : <Redirect to="/" />}
