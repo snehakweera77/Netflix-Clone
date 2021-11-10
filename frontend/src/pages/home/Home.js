@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Home.css";
+import "./Home.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Featured from "../../components/featured/Featured";
 import List from "../../components/list/List";
@@ -23,7 +23,6 @@ function Home({ type }) {
             },
           }
         );
-        console.log(res);
         setLists(res.data);
       } catch (err) {
         console.log(err);
@@ -34,7 +33,7 @@ function Home({ type }) {
   return (
     <div className="home">
       <Navbar />
-      <Featured type={type} />
+      <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
         <List list={list} />
       ))}
