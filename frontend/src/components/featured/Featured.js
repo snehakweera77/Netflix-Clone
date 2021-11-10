@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Featured.css";
+import "./Featured.scss";
 import axios from "axios";
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 
@@ -22,6 +22,8 @@ function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
+
+  console.log(content);
   return (
     <div className="featured">
       {type && (
@@ -29,7 +31,7 @@ function Featured({ type, setGenre }) {
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
-            id="category__genre"
+            id="genre"
             onChange={(e) => setGenre(e.target.value)}
           >
             <option>Genre</option>
@@ -49,24 +51,21 @@ function Featured({ type, setGenre }) {
           </select>
         </div>
       )}
-
-      <img className="featured__img" src={content.img} alt="" />
-      <div className="featured__info">
-        <img className="featured__info__title" src={content.imgTitle} alt="" />{" "}
-        <h2 className="featured__description">{content.desc}</h2>
-        <div className="featured__button">
-          <button className="featured__button__play">
+      <img src={content.img} alt="" />
+      <div className="info">
+        <h1>{content.title}</h1>
+        <span className="desc">{content.desc}</span>
+        <div className="buttons">
+          <button className="play">
             <PlayArrow />
             <span>Play</span>
           </button>
-          <button className="featured__button__more">
+          <button className="more">
             <InfoOutlined />
             <span>Info</span>
           </button>
         </div>
       </div>
-
-      <div className="featured--fadeBottom" />
     </div>
   );
 }
