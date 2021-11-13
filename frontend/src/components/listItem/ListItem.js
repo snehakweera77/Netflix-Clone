@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ListItem.css";
+import "./ListItem.scss";
 import {
   PlayArrow,
   Add,
@@ -11,26 +11,24 @@ import axios from "axios";
 
 function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [movie, setMovie] = useState({});
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const request = await axios.get("/movies/find" + item, {
+        const request = await axios.get("/movies/find/" + item, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-        setMovies(request.data);
+        setMovie(request.data);
       } catch (err) {
         console.log(err);
       }
     };
     getMovie();
   }, [item]);
-
   return (
     <Link to={{ pathname: "/watch", movie: movie }}>
       <div
@@ -39,26 +37,28 @@ function ListItem({ index, item }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img className="listItem__img" src={movie.img} alt="" />
+        <img src={movie?.img} alt="" />
         {isHovered && (
           <>
-            <video src={movie.trailer} autoPlay={true} loop />
-            <div className="listItem__info">
-              <div className="listItem__info__icons">
+            <video src={movie.trailer} autoPlay={true} loop muted={true} />
+            <div className="itemInfo">
+              <div className="icons">
                 <PlayArrow className="icon" />
                 <Add className="icon" />
                 <ThumbUpAltOutlined className="icon" />
                 <ThumbDownOutlined className="icon" />
               </div>
-              <div className="listItem__info__top">
+              <div className="itemInfoTop">
                 <span>{movie.duration}</span>
-                <span className="listItem__info__top__limit">
-                  {movie.limit}
-                </span>
+                <span className="limit">+{movie.limit}</span>
                 <span>{movie.year}</span>
               </div>
-              <div className="listItem__info__desc">{movie.desc}</div>
-              <div className="listItem__info__genre">{movie.genre}</div>
+              <div className="desc">{movie.desc}</div>
+              <div className="genres">
+                {movie.genres?.map((genre) => (
+                  <p>{genre}</p>
+                ))}
+              </div>
             </div>
           </>
         )}
