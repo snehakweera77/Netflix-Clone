@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./List.css";
+import "./List.scss";
 import {
   ArrowBackIosOutlined,
   ArrowForwardIosOutlined,
@@ -26,16 +26,16 @@ function List({ list }) {
   };
   return (
     <div className="list">
-      <span className="list__title">{list.title}</span>
-      <div className="list__wrapper">
+      <span className="listTitle">{list.title}</span>
+      <div className="wrapper">
         <ArrowBackIosOutlined
           className="sliderArrow left"
           onClick={() => handleClick("left")}
           style={{ display: !isMoved && "none" }}
         />
         <div className="container" ref={listRef}>
-          {list.content.map((listItem, i) => (
-            <ListItem index={i} item={listItem} />
+          {list.content.map((item, i) => (
+            <ListItem index={i} item={item} />
           ))}
         </div>
         <ArrowForwardIosOutlined
