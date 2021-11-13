@@ -23,7 +23,6 @@ function Featured({ type, setGenre }) {
     getRandomContent();
   }, [type]);
 
-  console.log(content);
   return (
     <div className="featured">
       {type && (
@@ -47,11 +46,12 @@ function Featured({ type, setGenre }) {
             <option value="western">Western</option>
             <option value="animation">Animation</option>
             <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
           </select>
         </div>
       )}
-      <img src={content.img} alt="" />
+
+      <img src={content.poster ? content.poster : content.img} alt="" />
+
       <div className="info">
         <h1>{content.title}</h1>
         <span className="desc">{content.desc}</span>

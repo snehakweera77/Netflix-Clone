@@ -4,15 +4,14 @@ const MovieSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     desc: { type: String },
+    poster: { type: String },
     img: { type: String },
-    imgTitle: { type: String },
-    imgSm: { type: String },
     trailer: { type: String },
-    video: { type: String },
     year: { type: String },
-    limit: { type: Number },
-    genre: { type: String },
-    isSeries: { type: Boolean, default: false },
+    limit: { type: Number, default: 14 },
+    duration: { type: String },
+    genres: { type: Array },
+    isSeries: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

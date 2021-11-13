@@ -10,6 +10,7 @@ router.post("/", verify, async (req, res) => {
       const savedMovie = await newMovie.save();
       res.status(201).json(savedMovie);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   } else {
@@ -60,7 +61,14 @@ router.get("/find/:id", verify, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+router.get("/findAll", verify, async (req, res) => {
+  try {
+    const movies = await Movie.find({ genres: "Documentary" }, { _id: 1 });
+    res.status(200).json(movies.reverse());
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 //GET RANDOM
 router.get("/random", verify, async (req, res) => {
   const type = req.query.type;
