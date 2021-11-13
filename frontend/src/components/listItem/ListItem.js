@@ -29,6 +29,9 @@ function ListItem({ index, item }) {
     };
     getMovie();
   }, [item]);
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
   return (
     <Link to={{ pathname: "/watch", movie: movie }}>
       <div
@@ -42,18 +45,21 @@ function ListItem({ index, item }) {
           <>
             <video src={movie.trailer} autoPlay={true} loop muted={true} />
             <div className="itemInfo">
-              <div className="icons">
-                <PlayArrow className="icon" />
-                <Add className="icon" />
-                <ThumbUpAltOutlined className="icon" />
-                <ThumbDownOutlined className="icon" />
-              </div>
               <div className="itemInfoTop">
-                <span>{movie.duration}</span>
-                <span className="limit">+{movie.limit}</span>
-                <span>{movie.year}</span>
+                <div className="icons">
+                  <PlayArrow className="icon" />
+                  <Add className="icon" />
+                  <ThumbUpAltOutlined className="icon" />
+                  <ThumbDownOutlined className="icon" />
+                </div>
+                <div className="itemInfoMisc">
+                  <span>{movie.duration}</span>
+                  <span className="limit">+{movie.limit}</span>
+                  <span>{movie.year}</span>
+                </div>
               </div>
-              <div className="desc">{movie.desc}</div>
+              <div className="title">{movie.title}</div>
+              <div className="desc">{truncate(movie.desc, 150)}</div>
               <div className="genres">
                 {movie.genres?.map((genre) => (
                   <p>{genre}</p>
