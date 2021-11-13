@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../authContext/AuthContext";
 import { login } from "../../authContext/apiCalls";
 import "./Login.scss";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -40,7 +41,10 @@ function Login() {
             Sign In
           </button>
           <span>
-            New to Netflix? <b>Sign up now.</b>
+            New to Netflix?{" "}
+            <Link to="/register" className="link">
+              <b>Sign up now.</b>
+            </Link>
           </span>
         </form>
       </div>
