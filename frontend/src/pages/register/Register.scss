@@ -13,26 +13,27 @@
   position: relative;
 
   .top {
-    .wrapper {
-      padding: 20px 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-      .logo {
-        height: 40px;
-      }
+    .logo {
+      height: 40px;
+    }
 
-      .loginButton {
-        background-color: red;
-        border: none;
-        color: white;
-        border-radius: 5px;
-        padding: 5px 15px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-      }
+    .loginButton {
+      background-color: red;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      padding: 5px 15px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .loginButton:hover {
+      background-color: black;
     }
   }
 

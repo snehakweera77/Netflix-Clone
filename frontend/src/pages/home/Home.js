@@ -22,7 +22,7 @@ function Home({ type }) {
       }
     };
     getRandomLists();
-  }, [type, genre]);
+  }, [type]);
   return (
     <div className="home">
       <Navbar />
