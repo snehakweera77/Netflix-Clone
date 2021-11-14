@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Featured.scss";
 import axios from "axios";
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
-function Featured({ type, setGenre }) {
+function Featured({ type }) {
   const [content, setContent] = useState({});
 
   useEffect(() => {
@@ -28,25 +29,6 @@ function Featured({ type, setGenre }) {
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select
-            name="genre"
-            id="genre"
-            onChange={(e) => setGenre(e.target.value)}
-          >
-            <option>Genre</option>
-            <option value="adventure">Adventure</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
-            <option value="drama">Drama</option>
-          </select>
         </div>
       )}
 
@@ -56,10 +38,12 @@ function Featured({ type, setGenre }) {
         <h1>{content.title}</h1>
         <span className="desc">{content.desc}</span>
         <div className="buttons">
-          <button className="play">
-            <PlayArrow />
-            <span>Play</span>
-          </button>
+          <Link to={{ pathname: "/watch", movie: content }} className="link">
+            <button className="play">
+              <PlayArrow />
+              <span>Play</span>
+            </button>
+          </Link>
           <button className="more">
             <InfoOutlined />
             <span>Info</span>
