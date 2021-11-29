@@ -1,25 +1,43 @@
 # Netflix Clone
+A Netflix Clone built with  MERN Stack.
 
-- **A Netflix clone built using React. It fetches the data from TMDB (The Movie Database) API. It also displays the movie trailers which is fetched from Youtube.
-  **
+---
+## Screenshots
+
+### Home
+
+![Home](netflix-fullpage.png)
+
+### Sign in
+
+![Home](netflix-login.png)
+
+### Sign up
+
+![Home](netflix-register.png)
 
 ---
 
-![Preview](netflix-preview.jpeg?raw=true)
+## Demo
+
+### Live Site Demo
+
+Demo: [Link](https://sneha-netflix-clone.herokuapp.com/)
 
 ---
+# Tech Stack
 
-## Tech Stack
+## BackEnd:
 
-- [React](https://github.com/facebook/react)
-  - Create-react-app with highly complex frontend structure
-- [Redux](https://redux.js.org/)
-  - State management and redux thunk for asynchronous api calls
-- [Firebase](https://firebase.google.com/)
-  - Used for hosting
-- [TMDB API](https://www.themoviedb.org/?language=en-US)
-  - Movie service API
-- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-  - Complex and dynamic route generation
+-    [Node.js](https://nodejs.org)
+-    [Express.js](https://expressjs.com/)
 
----
+## FrontEnd:
+
+-    [React.js](https://reactjs.org/)
+
+## DataBase:
+
+-    [MongoDB](https://www.mongodb.com/)
+
+
